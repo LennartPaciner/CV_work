@@ -42,7 +42,9 @@ def image_to_data(img):
 
 #bekomme nur zahlen
 def number_from_image(img):
-    hImg, wImg, _ = img.shape
+    hImg = img.shape[0]
+    wImg = img.shape[1]
+    #hImg, wImg, _ = img.shape
 
     #congif um nur numbers zu erkennen -> siehe dokumentation (engine modes)
     conf = r'--oem 3 --psm 6 outputbase digits'
@@ -61,19 +63,18 @@ def number_from_image(img):
 
 
 if __name__ == "__main__":
-    #test um 1 wegzubekommen
-
-
     # bild zum einlesen
     img = cv.imread('1.png')
+
 
     # pytesseract akzeptiert nur rgb-werte, opencv ist aber in bgr-werte -> müssen konvertieren
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 
+
     #image_to_string(img)
     #image_to_boxes(img)
-    #image_to_data(img)
-    number_from_image(img)
+    image_to_data(img)
+    #number_from_image(img)
 
     # zeige unser fenster/bild
     cv.imshow('Result', img)
